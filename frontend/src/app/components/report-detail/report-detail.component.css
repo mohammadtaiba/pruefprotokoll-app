@@ -1,0 +1,50 @@
+.detail-card {
+  max-width: 780px;
+  margin-bottom: 32px;
+}
+
+.detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.detail-header h2 {
+  margin: 0 0 6px;
+  font-size: 1.6rem;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 0;
+}
+
+dt {
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+dd {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 720px) {
+  .detail-header,
+  dl {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-header {
+    flex-direction: column;
+  }
+}

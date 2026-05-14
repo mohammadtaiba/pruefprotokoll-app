@@ -1,0 +1,37 @@
+<section class="page-header">
+  <div>
+    <h1>Prüfprotokolle</h1>
+    <p class="muted">Übersicht aller erfassten Produktprüfungen.</p>
+  </div>
+  <a class="btn" routerLink="/reports/new">Neues Protokoll</a>
+</section>
+
+<div *ngIf="isLoading" class="card muted">Lade Prüfprotokolle...</div>
+<div *ngIf="errorMessage" class="card error">{{ errorMessage }}</div>
+
+<section *ngIf="!isLoading && !errorMessage" class="report-grid">
+  <article *ngFor="let report of reports" class="card report-card">
+    <div class="report-card-header">
+      <div>
+        <h2>{{ report.productName }}</h2>
+        <p class="muted">Prüfer: {{ report.inspectorName }}</p>
+      </div>
+      <span class="status" [ngClass]="getStatusClass(report.resultStatus)">
+        {{ report.resultStatus }}
+      </span>
+    </div>
+
+    <p class="date">{{ report.inspectionDate | date: 'dd.MM.yyyy' }}</p>
+    <p class="comment">{{ report.comment || 'Kein Kommentar vorhanden.' }}</p>
+
+    <div class="actions">
+      <a class="btn secondary" [routerLink]="['/reports', report.id]">Details</a>
+      <a class="btn secondary" [routerLink]="['/reports', report.id, 'edit']">Bearbeiten</a>
+      <button class="btn danger" type="button" (click)="deleteReport(report.id)">Löschen</button>
+    </div>
+  </article>
+
+  <div *ngIf="reports.length === 0" class="card muted">
+    Noch keine Prüfprotokolle vorhanden.
+  </div>
+</section>

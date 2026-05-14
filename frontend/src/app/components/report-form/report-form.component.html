@@ -1,0 +1,51 @@
+<section class="page-header">
+  <div>
+    <h1>{{ isEditMode ? 'Prüfprotokoll bearbeiten' : 'Prüfprotokoll erstellen' }}</h1>
+    <p class="muted">Pflichtfelder ausfüllen und Prüfstatus auswählen.</p>
+  </div>
+  <a class="btn secondary" routerLink="/">Zurück zur Liste</a>
+</section>
+
+<form class="card" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <div *ngIf="errorMessage" class="error form-error">{{ errorMessage }}</div>
+
+  <div class="form-grid">
+    <div class="form-field">
+      <label for="productName">Produktname *</label>
+      <input id="productName" type="text" formControlName="productName" placeholder="z. B. Hydraulikpumpe HP-200">
+      <span *ngIf="isInvalid('productName')" class="error">Produktname ist erforderlich.</span>
+    </div>
+
+    <div class="form-field">
+      <label for="inspectorName">Prüfername *</label>
+      <input id="inspectorName" type="text" formControlName="inspectorName" placeholder="z. B. Anna Müller">
+      <span *ngIf="isInvalid('inspectorName')" class="error">Prüfername ist erforderlich.</span>
+    </div>
+
+    <div class="form-field">
+      <label for="inspectionDate">Prüfdatum *</label>
+      <input id="inspectionDate" type="date" formControlName="inspectionDate">
+      <span *ngIf="isInvalid('inspectionDate')" class="error">Prüfdatum ist erforderlich.</span>
+    </div>
+
+    <div class="form-field">
+      <label for="resultStatus">Status *</label>
+      <select id="resultStatus" formControlName="resultStatus">
+        <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+      </select>
+      <span *ngIf="isInvalid('resultStatus')" class="error">Status ist erforderlich.</span>
+    </div>
+
+    <div class="form-field full">
+      <label for="comment">Kommentar</label>
+      <textarea id="comment" formControlName="comment" placeholder="Optionale Hinweise zur Prüfung"></textarea>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn" type="submit" [disabled]="isSaving">
+      {{ isSaving ? 'Speichern...' : 'Speichern' }}
+    </button>
+    <a class="btn secondary" routerLink="/">Abbrechen</a>
+  </div>
+</form>

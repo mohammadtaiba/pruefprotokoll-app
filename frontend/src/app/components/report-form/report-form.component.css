@@ -1,0 +1,8 @@
+form.card {
+  max-width: 840px;
+  margin-bottom: 32px;
+}
+
+.form-error {
+  margin-bottom: 18px;
+}

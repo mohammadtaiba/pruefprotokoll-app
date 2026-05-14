@@ -1,0 +1,41 @@
+<section class="page-header">
+  <div>
+    <h1>Detailansicht</h1>
+    <p class="muted">Einzelnes Prüfprotokoll ansehen.</p>
+  </div>
+  <a class="btn secondary" routerLink="/">Zurück zur Liste</a>
+</section>
+
+<div *ngIf="isLoading" class="card muted">Lade Prüfprotokoll...</div>
+<div *ngIf="errorMessage" class="card error">{{ errorMessage }}</div>
+
+<article *ngIf="report" class="card detail-card">
+  <div class="detail-header">
+    <div>
+      <h2>{{ report.productName }}</h2>
+      <p class="muted">ID: {{ report.id }}</p>
+    </div>
+    <span class="status" [ngClass]="getStatusClass(report.resultStatus)">
+      {{ report.resultStatus }}
+    </span>
+  </div>
+
+  <dl>
+    <div>
+      <dt>Prüfer</dt>
+      <dd>{{ report.inspectorName }}</dd>
+    </div>
+    <div>
+      <dt>Prüfdatum</dt>
+      <dd>{{ report.inspectionDate | date: 'dd.MM.yyyy' }}</dd>
+    </div>
+    <div class="full">
+      <dt>Kommentar</dt>
+      <dd>{{ report.comment || 'Kein Kommentar vorhanden.' }}</dd>
+    </div>
+  </dl>
+
+  <div class="actions">
+    <a class="btn" [routerLink]="['/reports', report.id, 'edit']">Bearbeiten</a>
+  </div>
+</article>
