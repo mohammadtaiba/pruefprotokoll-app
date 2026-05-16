@@ -7,7 +7,7 @@ import { InspectionReport, InspectionReportPayload } from '../models/inspection-
   providedIn: 'root'
 })
 export class InspectionReportService {
-  private readonly apiUrl = '/api/inspectionreports';
+  private readonly apiUrl = 'https://mini-pruefprotokoll-app.onrender.com/api/inspectionreports';
 
   constructor(private readonly http: HttpClient) {}
 
