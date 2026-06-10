@@ -2,14 +2,28 @@
 
 Kleine Fullstack-Demo für Prüfprotokolle mit Angular, ASP.NET Core Web API, Entity Framework Core und SQLite.
 
+Die Anwendung kann lokal mit .NET/npm oder vollständig über Docker gestartet werden.
+
 ## Funktionen
 
-- Prüfprotokolle erstellen, anzeigen, bearbeiten und löschen
-- Detailansicht pro Prüfprotokoll
-- Statusauswahl: `Bestanden`, `Mängel`, `Nicht bestanden`
-- Responsive UI für Desktop und Smartphone
-- SQLite-Datenbank mit 2 Seed-Datensätzen
-- Einfache Unit-Tests für Backend-Service und Angular-Formularvalidierung
+* Prüfprotokolle erstellen, anzeigen, bearbeiten und löschen
+* Detailansicht pro Prüfprotokoll
+* Statusauswahl: `Bestanden`, `Mängel`, `Nicht bestanden`
+* Responsive UI für Desktop und Smartphone
+* SQLite-Datenbank mit 2 Seed-Datensätzen
+* Einfache Unit-Tests für Backend-Service und Angular-Formularvalidierung
+* Docker-Setup mit Angular-Frontend, Nginx und ASP.NET-Core-Backend
+
+## Technologien
+
+* Angular
+* ASP.NET Core Web API
+* Entity Framework Core
+* SQLite
+* Docker
+* Nginx
+* .NET 8
+* Node.js 20
 
 ## Projektstruktur
 
@@ -23,22 +37,73 @@ MiniPruefprotokollApp/
 │   │   ├── Repositories/
 │   │   ├── Services/
 │   │   └── Program.cs
-│   └── MiniInspectionReports.Tests/
+│   ├── MiniInspectionReports.Tests/
+│   └── Dockerfile
 ├── frontend/
 │   ├── src/app/components/
 │   ├── src/app/models/
 │   ├── src/app/services/
-│   └── proxy.conf.json
+│   ├── proxy.conf.json
+│   ├── nginx.conf
+│   └── Dockerfile
+├── docker-compose.yml
 └── README.md
 ```
 
 ## Voraussetzungen
 
-- .NET 8 SDK
-- Node.js 20 LTS oder kompatibel
-- npm
+Für lokalen Start ohne Docker:
 
-## Backend starten
+* .NET 8 SDK
+* Node.js 20 LTS oder kompatibel
+* npm
+
+Für Start mit Docker:
+
+* Docker Desktop
+* Docker Compose
+
+## Mit Docker starten
+
+Im Hauptordner des Projekts ausführen:
+
+```bash
+docker compose up --build
+```
+
+Die Anwendung ist danach erreichbar unter:
+
+```text
+http://localhost:4200
+```
+
+Die API ist erreichbar unter:
+
+```text
+http://localhost:5000/api/inspectionreports
+```
+
+Docker startet zwei Services:
+
+```text
+frontend   Angular-Build mit Nginx auf Port 4200
+backend    ASP.NET Core Web API auf Port 5000
+```
+
+Container stoppen:
+
+```bash
+docker compose down
+```
+
+Container neu bauen:
+
+```bash
+docker compose build --no-cache
+docker compose up
+```
+
+## Backend lokal starten
 
 ```bash
 cd backend/MiniInspectionReports.Api
@@ -54,7 +119,7 @@ http://localhost:5000
 
 Beim ersten Start wird automatisch die SQLite-Datei `inspectionreports.db` erstellt und mit 2 Beispieldatensätzen befüllt.
 
-## Frontend starten
+## Frontend lokal starten
 
 In einem zweiten Terminal:
 
@@ -70,7 +135,9 @@ Die Angular-App läuft danach unter:
 http://localhost:4200
 ```
 
-Das Frontend nutzt `proxy.conf.json`, damit API-Aufrufe an `/api` automatisch an `http://localhost:5000` weitergeleitet werden.
+Das Frontend nutzt lokal `proxy.conf.json`, damit API-Aufrufe an `/api` automatisch an `http://localhost:5000` weitergeleitet werden.
+
+Im Docker-Betrieb übernimmt `nginx.conf` die Weiterleitung von `/api` an den Backend-Container.
 
 ## Tests ausführen
 
@@ -111,3 +178,26 @@ public class InspectionReport
     public string? Comment { get; set; }
 }
 ```
+
+## Git-Workflow
+
+Für neue Änderungen sollte ein eigener Branch erstellt werden:
+
+```bash
+git switch -c feature/docker-setup
+```
+
+Änderungen committen:
+
+```bash
+git add .
+git commit -m "Add Docker setup"
+```
+
+Branch zu GitHub pushen:
+
+```bash
+git push -u origin feature/docker-setup
+```
+
+Danach kann auf GitHub ein Pull Request nach `main` erstellt werden.
