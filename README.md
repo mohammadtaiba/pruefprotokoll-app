@@ -125,8 +125,8 @@ In einem zweiten Terminal:
 
 ```bash
 cd frontend
-npm install
-npm start
+npm.cmd install
+npm.cmd start
 ```
 
 Die Angular-App läuft danach unter:
