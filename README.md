@@ -1,6 +1,6 @@
 # Prüfprotokoll-App
 
-Kleine Fullstack-Demo für Prüfprotokolle mit Angular, ASP.NET Core Web API, Entity Framework Core und SQLite.
+Fullstack-Demo für Prüfprotokolle mit C#, Angular, ASP.NET Core Web API, Entity Framework Core und SQLite.
 
 Die Anwendung kann lokal mit .NET/npm oder vollständig über Docker gestartet werden.
 
@@ -28,7 +28,7 @@ Die Anwendung kann lokal mit .NET/npm oder vollständig über Docker gestartet w
 ## Projektstruktur
 
 ```text
-MiniPruefprotokollApp/
+PruefprotokollApp/
 ├── backend/
 │   ├── MiniInspectionReports.Api/
 │   │   ├── Controllers/
