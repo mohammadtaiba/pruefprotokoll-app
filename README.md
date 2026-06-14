@@ -1,4 +1,4 @@
-# Mini-Prüfprotokoll-App
+# Prüfprotokoll-App
 
 Kleine Fullstack-Demo für Prüfprotokolle mit Angular, ASP.NET Core Web API, Entity Framework Core und SQLite.
 
