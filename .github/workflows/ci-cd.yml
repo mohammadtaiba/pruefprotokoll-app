@@ -1,0 +1,129 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: ci-cd-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  ci:
+    name: Install, lint, test and build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore backend dependencies
+        run: |
+          dotnet restore backend/MiniInspectionReports.Api/MiniInspectionReports.Api.csproj
+          dotnet restore backend/MiniInspectionReports.Tests/MiniInspectionReports.Tests.csproj
+
+      - name: Test backend
+        run: dotnet test backend/MiniInspectionReports.Tests/MiniInspectionReports.Tests.csproj --configuration Release --no-restore
+
+      - name: Build backend
+        run: dotnet build backend/MiniInspectionReports.Api/MiniInspectionReports.Api.csproj --configuration Release --no-restore
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Lint frontend without auto-formatting
+        working-directory: frontend
+        run: |
+          npx -y \
+            -p eslint@8.57.1 \
+            -p @typescript-eslint/parser@7.18.0 \
+            -p @typescript-eslint/eslint-plugin@7.18.0 \
+            eslint "src/**/*.ts" \
+            --no-eslintrc \
+            --parser @typescript-eslint/parser \
+            --plugin @typescript-eslint \
+            --env browser,es2022 \
+            --parser-options=ecmaVersion:latest \
+            --parser-options=sourceType:module \
+            --rule='no-var:error' \
+            --rule='prefer-const:warn' \
+            --rule='no-console:off' \
+            --rule='@typescript-eslint/no-unused-vars:warn' \
+            --max-warnings=50
+
+      - name: Test frontend
+        working-directory: frontend
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+  docker:
+    name: Build and push Docker images
+    needs: ci
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        component:
+          - backend
+          - frontend
+        include:
+          - component: backend
+            context: ./backend
+          - component: frontend
+            context: ./frontend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image and push on main
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          tags: |
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/pruefprotokoll-app-${{ matrix.component }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/pruefprotokoll-app-${{ matrix.component }}:latest
