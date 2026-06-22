@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { convertToParamMap, ActivatedRoute, Router } from '@angular/router';
+import { convertToParamMap, ActivatedRoute, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { ReportFormComponent } from './report-form.component';
 import { InspectionReportService } from '../../services/inspection-report.service';
@@ -20,7 +20,7 @@ describe('ReportFormComponent', () => {
       providers: [
         { provide: InspectionReportService, useValue: reportServiceMock },
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap({}) } } },
-        { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } }
+        provideRouter([])
       ]
     }).compileComponents();
 
