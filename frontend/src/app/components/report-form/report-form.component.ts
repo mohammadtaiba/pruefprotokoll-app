@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
-import { InspectionReport, InspectionReportPayload } from '../../models/inspection-report';
+import { InspectionReportPayload } from '../../models/inspection-report';
 import { InspectionReportService } from '../../services/inspection-report.service';
 
 @Component({
