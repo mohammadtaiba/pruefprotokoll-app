@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IInspectionReportRepository, InspectionReportRepository>();
 builder.Services.AddScoped<IInspectionReportService, InspectionReportService>();
@@ -25,11 +25,10 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Kleine Demo-App: Datenbank automatisch anlegen und Seed-Daten einspielen.
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    dbContext.Database.EnsureCreated();
+    dbContext.Database.Migrate();
 }
 
 app.UseCors("AngularDevClient");
