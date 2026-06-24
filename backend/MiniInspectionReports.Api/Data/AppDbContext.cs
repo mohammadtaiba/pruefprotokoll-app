@@ -22,6 +22,7 @@ public class AppDbContext : DbContext
         {
             entity.Property(x => x.ProductName).IsRequired().HasMaxLength(120);
             entity.Property(x => x.InspectorName).IsRequired().HasMaxLength(120);
+            entity.Property(x => x.InspectionDate).HasColumnType("timestamp without time zone");
             entity.Property(x => x.ResultStatus).IsRequired().HasMaxLength(30);
             entity.Property(x => x.Comment).HasMaxLength(1000);
 
