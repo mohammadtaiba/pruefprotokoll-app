@@ -4,7 +4,7 @@ using MiniInspectionReports.Api.Models;
 namespace MiniInspectionReports.Api.Data;
 
 /// <summary>
-/// Entity-Framework-Core-Kontext für SQLite.
+/// Entity-Framework-Core-Kontext für Prüfprotokolle.
 /// </summary>
 public class AppDbContext : DbContext
 {
