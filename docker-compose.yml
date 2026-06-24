@@ -1,7 +1,7 @@
-﻿services:
+services:
   postgres:
     image: postgres:16-alpine
-    container_name: minipruefprotokoll-postgres
+    container_name: pruefprotokoll-postgres
     environment:
       POSTGRES_DB: inspectionreports
       POSTGRES_USER: postgres
@@ -19,7 +19,7 @@
   backend:
     build:
       context: ./backend
-    container_name: minipruefprotokoll-backend
+    container_name: pruefprotokoll-backend
     ports:
       - "5000:8080"
     environment:
@@ -32,7 +32,7 @@
   frontend:
     build:
       context: ./frontend
-    container_name: minipruefprotokoll-frontend
+    container_name: pruefprotokoll-frontend
     ports:
       - "4200:80"
     depends_on:
