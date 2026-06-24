@@ -82,7 +82,7 @@ pruefprotokoll-app/
 │   └── workflows/
 │       └── ci-cd.yml
 ├── backend/
-│   ├── MiniInspectionReports.Api/
+│   ├── Pruefprotokoll.Api/
 │   │   ├── Controllers/
 │   │   ├── Data/
 │   │   ├── Migrations/
@@ -90,7 +90,7 @@ pruefprotokoll-app/
 │   │   ├── Repositories/
 │   │   ├── Services/
 │   │   └── Program.cs
-│   ├── MiniInspectionReports.Tests/
+│   ├── Pruefprotokoll.Tests/
 │   └── Dockerfile
 ├── frontend/
 │   ├── src/app/components/
@@ -181,7 +181,7 @@ Password: postgres
 Danach Backend starten:
 
 ```bash
-cd backend/MiniInspectionReports.Api
+cd backend/Pruefprotokoll.Api
 dotnet restore
 dotnet run
 ```
@@ -217,7 +217,7 @@ Das Frontend nutzt im lokalen Entwicklungsmodus `proxy.conf.json`, damit API-Auf
 Backend-Tests ausführen:
 
 ```bash
-cd backend/MiniInspectionReports.Tests
+cd backend/Pruefprotokoll.Tests
 dotnet test
 ```
 
