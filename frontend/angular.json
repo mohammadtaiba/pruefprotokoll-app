@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mini-inspection-reports-frontend": {
+    "pruefprotokoll-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/mini-inspection-reports-frontend",
+            "outputPath": "dist/pruefprotokoll-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -52,10 +52,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mini-inspection-reports-frontend:build:production"
+              "buildTarget": "pruefprotokoll-frontend:build:production"
             },
             "development": {
-              "buildTarget": "mini-inspection-reports-frontend:build:development"
+              "buildTarget": "pruefprotokoll-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
