@@ -1,0 +1,12 @@
+using Pruefprotokoll.Api.Models;
+
+namespace Pruefprotokoll.Api.Repositories;
+
+public interface IInspectionReportRepository
+{
+    Task<List<InspectionReport>> GetAllAsync();
+    Task<InspectionReport?> GetByIdAsync(int id);
+    Task<InspectionReport> AddAsync(InspectionReport report);
+    Task<bool> UpdateAsync(InspectionReport report);
+    Task<bool> DeleteAsync(int id);
+}
