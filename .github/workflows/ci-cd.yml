@@ -35,14 +35,14 @@ jobs:
 
       - name: Restore backend dependencies
         run: |
-          dotnet restore backend/MiniInspectionReports.Api/MiniInspectionReports.Api.csproj
-          dotnet restore backend/MiniInspectionReports.Tests/MiniInspectionReports.Tests.csproj
+          dotnet restore backend/Pruefprotokoll.Api/Pruefprotokoll.Api.csproj
+          dotnet restore backend/Pruefprotokoll.Tests/Pruefprotokoll.Tests.csproj
 
       - name: Test backend
-        run: dotnet test backend/MiniInspectionReports.Tests/MiniInspectionReports.Tests.csproj --configuration Release --no-restore
+        run: dotnet test backend/Pruefprotokoll.Tests/Pruefprotokoll.Tests.csproj --configuration Release --no-restore
 
       - name: Build backend
-        run: dotnet build backend/MiniInspectionReports.Api/MiniInspectionReports.Api.csproj --configuration Release --no-restore
+        run: dotnet build backend/Pruefprotokoll.Api/Pruefprotokoll.Api.csproj --configuration Release --no-restore
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
