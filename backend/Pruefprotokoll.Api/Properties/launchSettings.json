@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "MiniInspectionReports.Api": {
+    "Pruefprotokoll.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,

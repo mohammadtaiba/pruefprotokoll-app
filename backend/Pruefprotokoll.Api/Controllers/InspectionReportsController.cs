@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using MiniInspectionReports.Api.Models;
-using MiniInspectionReports.Api.Services;
+using Pruefprotokoll.Api.Models;
+using Pruefprotokoll.Api.Services;
 
-namespace MiniInspectionReports.Api.Controllers;
+namespace Pruefprotokoll.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

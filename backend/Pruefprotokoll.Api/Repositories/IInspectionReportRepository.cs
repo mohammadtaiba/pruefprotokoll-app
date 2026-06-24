@@ -1,6 +1,6 @@
-using MiniInspectionReports.Api.Models;
+using Pruefprotokoll.Api.Models;
 
-namespace MiniInspectionReports.Api.Repositories;
+namespace Pruefprotokoll.Api.Repositories;
 
 public interface IInspectionReportRepository
 {

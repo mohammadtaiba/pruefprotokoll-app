@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using MiniInspectionReports.Api.Data;
-using MiniInspectionReports.Api.Models;
+using Pruefprotokoll.Api.Data;
+using Pruefprotokoll.Api.Models;
 
-namespace MiniInspectionReports.Api.Repositories;
+namespace Pruefprotokoll.Api.Repositories;
 
 /// <summary>
 /// Kapselt alle Datenbankzugriffe für Prüfprotokolle.

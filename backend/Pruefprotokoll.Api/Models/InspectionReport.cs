@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MiniInspectionReports.Api.Models;
+namespace Pruefprotokoll.Api.Models;
 
 /// <summary>
 /// Zentrales Datenmodell für ein Prüfprotokoll.

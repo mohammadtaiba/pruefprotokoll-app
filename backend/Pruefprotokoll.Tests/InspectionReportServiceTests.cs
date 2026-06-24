@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using MiniInspectionReports.Api.Data;
-using MiniInspectionReports.Api.Models;
-using MiniInspectionReports.Api.Repositories;
-using MiniInspectionReports.Api.Services;
+using Pruefprotokoll.Api.Data;
+using Pruefprotokoll.Api.Models;
+using Pruefprotokoll.Api.Repositories;
+using Pruefprotokoll.Api.Services;
 using Xunit;
 
-namespace MiniInspectionReports.Tests;
+namespace Pruefprotokoll.Tests;
 
 public class InspectionReportServiceTests
 {

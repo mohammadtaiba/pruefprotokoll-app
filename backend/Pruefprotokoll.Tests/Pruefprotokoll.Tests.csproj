@@ -21,6 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MiniInspectionReports.Api\MiniInspectionReports.Api.csproj" />
+    <ProjectReference Include="..\Pruefprotokoll.Api\Pruefprotokoll.Api.csproj" />
   </ItemGroup>
 </Project>

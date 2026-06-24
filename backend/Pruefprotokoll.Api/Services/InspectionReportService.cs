@@ -1,7 +1,7 @@
-using MiniInspectionReports.Api.Models;
-using MiniInspectionReports.Api.Repositories;
+using Pruefprotokoll.Api.Models;
+using Pruefprotokoll.Api.Repositories;
 
-namespace MiniInspectionReports.Api.Services;
+namespace Pruefprotokoll.Api.Services;
 
 /// <summary>
 /// Enthält fachliche Regeln und trennt Controller von Datenzugriff.
