@@ -10,6 +10,27 @@ Eine Fullstack-Webanwendung zur Verwaltung von Prüfprotokollen. Das Projekt zei
 
 Die Anwendung wurde als kompaktes Portfolio-Projekt entwickelt und demonstriert typische Aufgaben aus der modernen Webentwicklung: Formularvalidierung, REST-Kommunikation, Datenpersistenz, serviceorientierte Backend-Struktur, Containerisierung und automatisierte Qualitätsprüfungen.
 
+## Inhaltsverzeichnis
+
+* [Projektziel](#projektziel)
+* [Funktionen](#funktionen)
+* [Screenshots](#screenshots)
+
+  * [Übersicht der Prüfprotokolle](#übersicht-der-prüfprotokolle)
+  * [Prüfprotokoll erstellen](#prüfprotokoll-erstellen)
+  * [Responsive Ansicht](#responsive-ansicht)
+* [Tech Stack](#tech-stack)
+* [Architektur](#architektur)
+* [Projektstruktur](#projektstruktur)
+* [Voraussetzungen](#voraussetzungen)
+* [Start mit Docker](#start-mit-docker)
+* [Backend lokal starten](#backend-lokal-starten)
+* [Frontend lokal starten](#frontend-lokal-starten)
+* [Tests und Qualitätssicherung](#tests-und-qualitätssicherung)
+* [License](#license)
+
+
+
 ## Projektziel
 
 Ziel des Projekts ist eine einfache, nachvollziehbare Prüfprotokoll-Verwaltung, mit der Prüfberichte erstellt, angezeigt, bearbeitet und gelöscht werden können. Der Fokus liegt nicht auf Funktionsumfang, sondern auf einer klaren technischen Struktur, reproduzierbarem Setup und nachvollziehbarer Codequalität.
@@ -241,3 +262,10 @@ Frontend builden:
 cd frontend
 npm run build
 ```
+
+## License
+
+Copyright (c) 2026 Mohammad Taiba. All rights reserved.
+
+This project is published for portfolio and review purposes only. See [LICENSE](./LICENSE).
+
